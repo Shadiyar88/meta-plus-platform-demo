@@ -1,0 +1,11 @@
+services:
+  platform:
+    build: .
+    ports:
+      - "127.0.0.1:8766:8766"
+    env_file: .env
+    volumes:
+      - meta_data:/app/data
+    restart: unless-stopped
+volumes:
+  meta_data:

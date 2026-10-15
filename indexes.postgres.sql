@@ -1,0 +1,17 @@
+CREATE INDEX IF NOT EXISTS parent_children_student_id_idx ON meta_private.parent_children(student_id);
+CREATE INDEX IF NOT EXISTS sessions_user_id_idx ON meta_private.sessions(user_id);
+CREATE INDEX IF NOT EXISTS groups_teacher_id_idx ON meta_private.groups(teacher_id);
+CREATE INDEX IF NOT EXISTS enrollments_group_id_idx ON meta_private.enrollments(group_id);
+CREATE INDEX IF NOT EXISTS slots_group_id_idx ON meta_private.slots(group_id);
+CREATE INDEX IF NOT EXISTS attendance_student_id_idx ON meta_private.attendance(student_id);
+CREATE INDEX IF NOT EXISTS attendance_updated_by_idx ON meta_private.attendance(updated_by);
+CREATE INDEX IF NOT EXISTS homework_group_id_idx ON meta_private.homework(group_id);
+CREATE INDEX IF NOT EXISTS homework_created_by_idx ON meta_private.homework(created_by);
+CREATE INDEX IF NOT EXISTS submissions_student_id_idx ON meta_private.submissions(student_id);
+CREATE INDEX IF NOT EXISTS assessments_group_id_idx ON meta_private.assessments(group_id);
+CREATE INDEX IF NOT EXISTS assessments_created_by_idx ON meta_private.assessments(created_by);
+CREATE INDEX IF NOT EXISTS invoices_group_id_idx ON meta_private.invoices(group_id);
+CREATE INDEX IF NOT EXISTS payments_recorded_by_idx ON meta_private.payments(recorded_by);
+CREATE INDEX IF NOT EXISTS payment_claims_invoice_id_idx ON meta_private.payment_claims(invoice_id);
+CREATE INDEX IF NOT EXISTS payment_claims_submitted_by_idx ON meta_private.payment_claims(submitted_by);
+CREATE INDEX IF NOT EXISTS audit_user_id_idx ON meta_private.audit(user_id);

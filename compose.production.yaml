@@ -1,0 +1,36 @@
+services:
+  platform:
+    build: .
+    env_file: .env
+    environment:
+      META_DB: /app/data/meta.sqlite3
+      META_SECURE_COOKIE: "1"
+      META_TRUSTED_PROXIES: 172.30.0.0/24
+    volumes:
+      - meta_data:/app/data
+    restart: unless-stopped
+    networks: [meta]
+    # No public backend port. All browser traffic goes through Caddy.
+  caddy:
+    image: caddy:2
+    environment:
+      META_DOMAIN: ${META_DOMAIN:?Set META_DOMAIN to your real domain}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [platform]
+    restart: unless-stopped
+    networks: [meta]
+networks:
+  meta:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+volumes:
+  meta_data:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,10 @@
+{$META_DOMAIN} {
+    encode zstd gzip
+    request_body {
+        max_size 64KB
+    }
+    header Strict-Transport-Security "max-age=31536000"
+    reverse_proxy platform:8766 {
+        header_up X-Forwarded-For {remote_host}
+    }
+}
